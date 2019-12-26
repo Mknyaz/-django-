@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from .forms import SubscriberForm
 from masters.models import Master
 from rest_framework import viewsets
-from tutorial.quickstart.serializers import UserSerializer, GroupSerializer
+from landing.serializers import UserSerializer
 
 def landing(request):
     if request.method=="POST":

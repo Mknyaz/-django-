@@ -13,11 +13,7 @@
         <h1 class="text-center">
           {{master.name}}
         </h1>
-        <div class="">
-          <p>
-            Price: {{ master.price}}
-          </p>
-        </div>
+
           <div>
 
             <!-- Nav tabs -->
@@ -25,7 +21,7 @@
               <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">
                 Описание
               </a></li>
-              <li role="presentation"><a href="#haircuts" aria-controls="haircuts" role="tab" data-toggle="tab">
+              <li role="presentation"><a href="#short_descriptions" aria-controls="short_descriptions" role="tab" data-toggle="tab">
                 Выбор стрижек
               </a></li>
               <li role="presentation"><a href="#date" aria-controls="messages" role="tab" data-toggle="tab">
@@ -39,8 +35,8 @@
               <div role="tabpanel" class="tab-pane active" id="description">
                 {{ master.descriptions}}
               </div>
-              <div role="tabpanel" class="tab-pane" id="haircuts">
-                {{ master.haircut}}
+              <div role="tabpanel" class="tab-pane" id="short_descriptions">
+                {{ master.short_descriptions}}
               </div>
               <div role="tabpanel" class="tab-pane" id="date">
                 {{master.date}}
