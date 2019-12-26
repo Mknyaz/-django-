@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        {% for image_item in master.masterimage_set.all %}
+          <img src="{{image_item.image.url}}" alt="">
+        {% endfor %}
+      </div>
+      <div class="col-lg-6">
+        <h1 class="text-center">
+          {{master.name}}
+        </h1>
+        <div class="">
+          <p>
+            Price: {{ master.price}}
+          </p>
+        </div>
+          <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">
+                Описание
+              </a></li>
+              <li role="presentation"><a href="#haircuts" aria-controls="haircuts" role="tab" data-toggle="tab">
+                Выбор стрижек
+              </a></li>
+              <li role="presentation"><a href="#date" aria-controls="messages" role="tab" data-toggle="tab">
+                Расписание
+              </a></li>
+
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content master-description-tabs">
+              <div role="tabpanel" class="tab-pane active" id="description">
+                {{ master.descriptions}}
+              </div>
+              <div role="tabpanel" class="tab-pane" id="haircuts">
+                {{ master.haircut}}
+              </div>
+              <div role="tabpanel" class="tab-pane" id="date">
+                {{master.date}}
+              </div>
+            </div>
+            <div class="">
+              <form id="form_date_master" class="form-inline">
+                <!-- <input type="datetime-local" class="form-control" name="datetime-local" id="datetime-local"> -->
+                <div class="form-group">
+                  <a href="/landing">
+                    <button type="submit" class="btn btn-success btn-buy"
+                      data-master_id = {{ master.id }}
+                      data-name_id = {{ master.name }}
+                    >
+                      <a href="/landing">
+                          Записаться
+                      </a>
+                    </button>
+
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

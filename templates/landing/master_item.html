@@ -1,0 +1,21 @@
+<div class="col-lg-3">
+  <div class="master-item">
+    <div>
+
+      <img src="{{ master_image.image.url }}" class="img-responsive">
+
+    </div>
+    <a href="{% url 'master' master.id %}">
+      <h4>{{ master.name }}</h4>
+    </a>
+    <p>
+      {{ master.descriptions|truncatechars_html:100 }}
+    </p>
+    <div class="add-to-card-btn">
+      <button  class="btn btn-success">
+        Записаться
+      </button>
+
+    </div>
+  </div>
+</div>

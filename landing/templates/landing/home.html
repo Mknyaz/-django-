@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="section-top">
+    <img src="{% static 'image/010.jpg' %}" class="img-responsive">
+  </div>
+  <div class="section section1 men-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-center">Мужские парикмахеры</h1>
+        </div>
+        {% for master in masters_men %}
+          {% include 'landing/master_item.html' %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+  <div class="section section-del">
+    
+  </div>
+  <div class="section section2 women-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-center">Женские парикмахеры</h1>
+        </div>
+        {% for master in masters_women %}
+            {% include 'landing/master_item.html' %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
