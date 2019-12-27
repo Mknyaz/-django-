@@ -24,16 +24,22 @@
         <div class="col-lg-8 col-lg-offset-2">
           <h1 class="title">Введите данные</h1>
           <div>
+            {{ form.errors }}
             <form class="form-inline text-center" action="" method="post">{% csrf_token %}
               <div class="form-group">
-                <label>Ваше имя: </label>
-                <input type="text" name="{{ form.name. }}" class="form-control">
-
-                <label> Ваша эл. почта:  </label>
-                <input type="text" name="{{ form.email.name }}" class="form-control">
-
-                <label> Дата и время:  </label>
-                <input type="datetime-local" name="{{ form.date.name }}" class="form-control">
+                {{ form.name }}
+                <!-- <label>Ваше имя: </label> -->
+                <!-- <input type="text" name="{{ form.name }}" class="form-control"> -->
+              </div>
+              <div class="form-group">
+                {{ form.email }}
+                <!-- <label> Ваша эл. почта:  </label> -->
+                <!-- <input type="text" name="{{ form.email.name }}" class="form-control"> -->
+              </div>
+              <div class="form-group">
+                {{ form.date }}
+                <!-- <label> Дата и время:  </label> -->
+                <!-- <input type="datetime-local" name="{{ form.date.name }}" class="form-control"> -->
               </div>
               <button type="submit" class="btn btn-primary btn-orange">Отправить</button>
             </form>

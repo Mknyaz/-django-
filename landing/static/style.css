@@ -39,10 +39,9 @@ html, body{
 .master-description-tabs{
   padding: 10px;
 }
-
-.form-group {
+.form-inline .form-group {
     display: inline-block;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     vertical-align: middle;
 }
 

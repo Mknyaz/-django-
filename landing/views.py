@@ -5,11 +5,14 @@ from rest_framework import viewsets
 from landing.serializers import UserSerializer
 
 def landing(request):
+    # message = 'Провал'
     if request.method=="POST":
         form=SubscriberForm(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
             data.save()
+            # message = 'Успех'
+            # return render(request, 'landing/thank_page.html', {'message': message})
     else:
         form=SubscriberForm()
     # form = SubscriberForm(request.POST or None)
