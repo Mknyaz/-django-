@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.template.defaultfilters import truncatewords
+from django.urls import reverse
 
 class Haircut(models.Model):
     name = models.CharField(u'название стрижки',max_length=50, blank=True, null=True, default=None)
@@ -49,6 +51,9 @@ class Master(models.Model):
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     date = models.DateTimeField(u'Дата и время',default=timezone.now)
+
+    def get_absolute_url(self):
+         return reverse('master', args=[str(self.id)])
 
     def __str__(self):
         return "%s, %s" % (self.name, self.position)

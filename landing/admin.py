@@ -3,7 +3,7 @@ from .models import *
 
 class SubscriberAdmin(admin.ModelAdmin):
     list_display = ["name", "email", "date"]
-    search_fields = ('name','email', "date",)
+    search_fields = ('name','email', "date")
 
     class Meta:
         model = Subscriber

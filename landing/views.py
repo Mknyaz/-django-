@@ -1,27 +1,24 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect
 from .forms import SubscriberForm
 from masters.models import Master
 from rest_framework import viewsets
 from landing.serializers import UserSerializer
 
-def landing(request):
+def landing(request, id):
     # message = 'Провал'
+    master = get_object_or_404(Master, id=id)
     if request.method=="POST":
         form=SubscriberForm(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
+            landing.master = master
             data.save()
             # message = 'Успех'
             # return render(request, 'landing/thank_page.html', {'message': message})
+            return redirect('master', id=master.id)
     else:
         form=SubscriberForm()
-    # form = SubscriberForm(request.POST or None)
-    # if request.method=="POST" and form.is_valid():
-    #     print(request.POST)
-    #     print(form.cleaned_data)
-    #     data = form.cleaned_data
-    #     print(data["name"])
-    #     new_form = form.save()
+
     return render(request, 'landing/landing.html', {'form': form})
 
 def home(request):
@@ -35,8 +32,19 @@ def contact(request):
 def about(request):
     return render(request, 'landing/about.html', {'values': 1})
 
+def master(request, id):
+    master = get_object_or_404(Master,id=id)
+    return render(request, 'masters/master.html', {'master': master})
 
+def success(request):
+    return render(request, 'landing/success.html', locals())
+def error(request):
+    return render(request, 'landing/error.html', locals())
 
+def handler404(request, exception, template_name="error.html"):
+    response = render_to_response("error.html")
+    response.status_code = 404
+    return response
 
 class UserViewSet(viewsets.ModelViewSet):
     """
