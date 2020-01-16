@@ -1,7 +1,14 @@
-from django.test import TestCase
-from ..models import *
+import json
+from django.test import Client, TestCase
+from django.urls import reverse
+from rest_framework import status
+from ..models import Master
+from ..serializers import UserSerializer
 
-class MasterTest(TestCase):
+client = Client()
+
+
+class GetAllRoomsTest(TestCase):
     def setUp(self):
         Master.objects.create(name='Паша',
                             descriptions='Старший мастер. Опыт 5 лет.', position='Старший',
@@ -12,14 +19,10 @@ class MasterTest(TestCase):
         Master.objects.create(name='Миша',
                             descriptions='Старший мастер. Опыт 5 лет.', position='Старший',
                             is_male=False, haircut='Стильная')
-    #Проверка на тип парикмахера - муж/жен
-    def test_men_or_women(self):
-        master_m = Master.objects.get(name='Паша')
-        self.assertEqual(master_m.is_male, True)
-        masters = Master.men.all()
-        self.assertEqual(masters.count(), 1)
 
-    # def test__update(self):
-    #     master = Master.objects.get(price=1000)
-    #     room.price=5000
-    #     self.assertEqual(room.is_premium, True)
+    def test_get_all_masters(self):
+        response = client.get(reverse('master-list'))
+        masters = Master.objects.all()
+        serializer = UserSerializer(masters, many=True)
+        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

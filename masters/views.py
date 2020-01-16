@@ -5,3 +5,7 @@ from masters.models import Master
 def master(request, id):
     master = get_object_or_404(Master,id=id)
     return render(request, 'masters/master.html', {'master': master})
+
+def master_list(request):
+    masters = Master.objects.all()
+    return render(request, 'master.html', {'masters':masters})

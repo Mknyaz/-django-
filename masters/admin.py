@@ -9,7 +9,6 @@ class MasterImageInline(admin.TabularInline):
     extra = 0
 
 
-
 class MasterCategoryAdmin(admin.ModelAdmin):
     list_display = [field.name for field in MasterCategory._meta.fields]
 
@@ -18,12 +17,7 @@ class MasterCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(MasterCategory, MasterCategoryAdmin)
 
-class DateMasterAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in DateMaster._meta.fields]
-    class Meta:
-        model = DateMaster
 
-admin.site.register(DateMaster, DateMasterAdmin)
 
 class MasterAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Master._meta.fields]

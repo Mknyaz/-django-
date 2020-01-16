@@ -45,7 +45,9 @@ def success(request):
     return render(request, 'landing/success.html', locals())
 def error(request):
     return render(request, 'landing/error.html', locals())
-
+def master_list(request):
+    masters = Master.objects.all()
+    return render(request, 'master.html', {'masters':masters})
 def handler404(request, exception, template_name="error.html"):
     response = render_to_response("error.html")
     response.status_code = 404
