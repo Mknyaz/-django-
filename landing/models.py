@@ -5,14 +5,14 @@ from masters.models import *
 from barbershop.models import *
 from django.db.models.signals import post_save
 from django.shortcuts import render,get_object_or_404, redirect
-
+from django.http import Http404, HttpResponse
 class Subscriber(models.Model):
     email = models.EmailField()
     name = models.CharField(max_length=155)
     date = models.DateTimeField(u'Дата и время',default=timezone.now)
     # master = models.ForeignKey(Master, blank=True, null=True, default=None, on_delete=models.CASCADE)
     master = models.ForeignKey(Master, blank=True, null=False, default=None, on_delete=models.CASCADE)
-
+    # busy = models.BooleanField(u'Свободен?',default=True)
     def __str__(self):
         return '%s %s' % (self.name, self.date)
 
@@ -28,7 +28,6 @@ class Subscriber(models.Model):
             date__day=self.date.day
         )
         if q.exists() > 0:
-            raise ValueError('Cannot create new event on the same date!')
-            # return render(self, 'landing/error.html')
+            raise Http404('Данная дата занята, выберете другую.')
         else:
             super(Subscriber, self).save(*args, **kwargs)

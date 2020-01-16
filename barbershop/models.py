@@ -44,10 +44,10 @@ class Barbershop(models.Model):
 class MasterInBarbershop(models.Model):
     barbershop = models.ForeignKey(Barbershop, blank=True, null=True, default=None,on_delete=models.CASCADE)
     master = models.ForeignKey(Master, blank=True, null=True, default=None,on_delete=models.CASCADE)
-    haircut = models.ForeignKey(Haircut, blank=True, null=True, default=None,on_delete=models.CASCADE)
-    #price = models.DecimalField(max_digits=10, decimal_places=2,default=0)
-    #total_price = models.DecimalField(max_digits=10, decimal_places=2,default=0)
-    #date_per_master = models.DateTimeField(default=timezone.now)
+    haircut =models.CharField(u'Стрижка',max_length=48, blank=True, null=True, default=None)
+    price = models.DecimalField(max_digits=10, decimal_places=2,default=0)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2,default=0)
+    date_per_master = models.DateTimeField(default=timezone.now)
     custumer_date = models.DateTimeField(u'Дата и время',default=timezone.now)
     is_active = models.BooleanField(default=True)
 
@@ -70,7 +70,7 @@ class MasterInBarbershop(models.Model):
         #
         # for item in all_masters_in_barbershop:
         #    total_price = item.price
-        self.barbershop.custumer_haircut = self.haircut.name
+        # self.barbershop.custumer_haircut = self.haircut.name
         self.barbershop.custumer_master = self.master.name
         self.barbershop.price = self.haircut.price
         self.barbershop.save(force_update=True)

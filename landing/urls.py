@@ -16,3 +16,5 @@ urlpatterns = [
     path('master/<int:id>/landing/success/', views.success, name='success'),
     path('error/', views.error, name='error'),
 ]
+
+handler404 = 'landing.views.handler404'

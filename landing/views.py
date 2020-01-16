@@ -4,6 +4,7 @@ from masters.models import Master
 from rest_framework import viewsets
 from landing.serializers import UserSerializer
 
+
 def landing(request, id):
     # message = 'Провал'
     master = get_object_or_404(Master, id=id)
@@ -14,8 +15,12 @@ def landing(request, id):
             landing.master = master
             data.save()
             # message = 'Успех'
-            # return render(request, 'landing/thank_page.html', {'message': message})
-            return redirect('master', id=master.id)
+
+            # if subscriber.busy==True:
+            #     return render(request, 'landing/success.html', {'form': form})
+            # else:
+            #     return render(request, 'landing/success.html', {'form': form})
+            # # return redirect('master', id=master.id)
     else:
         form=SubscriberForm()
 

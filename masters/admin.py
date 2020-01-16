@@ -1,23 +1,14 @@
 from django.contrib import admin
 from .models import *
 
-class HaircutAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Haircut._meta.fields]
 
-    class Meta:
-        model = Haircut
-
-admin.site.register(Haircut, HaircutAdmin)
 
 class MasterImageInline(admin.TabularInline):
 
     model = MasterImage
     extra = 0
 
-class HaircutInline(admin.TabularInline):
 
-    model = Haircut
-    extra = 0
 
 class MasterCategoryAdmin(admin.ModelAdmin):
     list_display = [field.name for field in MasterCategory._meta.fields]
