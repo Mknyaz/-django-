@@ -19,6 +19,9 @@ class MasterTest(TestCase):
         masters = Master.men.all()
         self.assertEqual(masters.count(), 1)
 
+    def test_men_or_women_filtering(self):
+        masters= Master.men.all()
+        self.assertEqual(masters.count(), 1)
     # def test__update(self):
     #     master = Master.objects.get(price=1000)
     #     room.price=5000
