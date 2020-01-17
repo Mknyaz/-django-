@@ -8,7 +8,7 @@ router.register(r'subscriber', views.UserViewSet)
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('master/<int:id>/', views.master, name='master'),
+    path('master/<int:id>', views.master, name='master'),
     path('master/<int:id>/landing', views.landing, name='landing'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),

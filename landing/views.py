@@ -27,8 +27,8 @@ def landing(request, id):
     return render(request, 'landing/landing.html', {'form': form})
 
 def home(request):
-    masters_men = Master.objects.filter(is_active=True, category__id=1)
-    masters_women = Master.objects.filter(is_active=True, category__id=2)
+    masters_men = Master.objects.filter(is_active=True, is_male=True)
+    masters_women = Master.objects.filter(is_active=True, is_male=False)
     return render(request, 'landing/home.html', locals())
 
 def contact(request):

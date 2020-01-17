@@ -101,5 +101,5 @@ class DeleteSingleMasterTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_invalid_delete_master(self):
-        response = client.delete(reverse('master', kwargs={'pk': 9999}))
+        response = client.delete(reverse('master-detail', kwargs={'pk': 9999}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
