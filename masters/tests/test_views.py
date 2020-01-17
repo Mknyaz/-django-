@@ -55,29 +55,28 @@ class CreateNewMasterTest(TestCase):
 class UpdateMasterTest(TestCase):
     """ Test module for updating an existing post record """
     def setUp(self):
-        self.master = Master.objects.create(name='Вадим',descriptions='Старший мастер. Опыт 5 лет.', position='Старший', date = '2020-01-17T15:02:00',
-        is_male=False, haircut='Стильная')
+        self.master = Master.objects.create(name='Вадим', position='Старший', date = '2020-01-17T15:02:00')
 
         self.valid_payload = {
-            'name': '',
-            'descriptions': 'Старший мастер. Опыт 5 лет.',
+            'name': 'Артём',
+            'position': 'Старший мастер. Опыт 5 лет.',
             'date': '2020-01-17T15:02:00'
         }
         self.invalid_payload = {
-            'name': 'Артём',
-            'descriptions': 'Старший мастер. Опыт 5 лет.',
-            'date': '2020-01-17T15:02:00'
+            'name': '',
+            'position': 'Старший мастер. Опыт 5 лет.',
+            'date': ''
         }
 
     def test_valid_update_Master(self):
-        response = client.put(reverse('master-list',
+        response = client.put(reverse('master',
                                       kwargs={'pk': self.master.pk}),
                               data=json.dumps(self.valid_payload),
                               content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_invalid_update_Master(self):
-        response = client.put(reverse('master-list',
+        response = client.put(reverse('master',
                                       kwargs={'pk': self.master.pk}),
                               data=json.dumps(self.invalid_payload),
                               content_type='application/json')

@@ -8,4 +8,4 @@ def master(request, id):
 
 def master_list(request):
     masters = Master.objects.all()
-    return render(request, 'master.html', {'masters':masters})
+    return render(request, 'landing/masterlist.html', {'masters':masters})

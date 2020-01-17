@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ {% for master in masters %}
+        <div class= "master" >
+            <h1><a href="{{ master.get_absolute_url }}">{{ master.name }}</a></h1>
+            <h2>Мастер</h2>
+            <p>{{ master.descriptions }}</p>
+            <a class="btn btn-default" href="{% url 'landing' id=master.id %}"><span
+                    class="glyphicon glyphicon-home"></span></a>
+            <a class="btn btn-default" href="{{ master.get_absolute_url }}"><span
+                    class="glyphicon glyphicon-comment"></span></a>
+        </div>
+ {% endfor %}
+{% endblock %}
