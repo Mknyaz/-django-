@@ -39,13 +39,13 @@ class MasterCategory(models.Model):
 
 
 class Master(models.Model):
-    name = models.CharField(u'Мастер',max_length=155, blank=True, null=True, default=None)
-    descriptions = models.TextField(u'Описание',blank=True, null=True, default=None)
-    # short_descriptions = models.TextField(u'Стрижки',blank=True, null=True, default=None)
-    position = models.CharField(u'Должность',max_length=155,blank=True, null=True, default=None);
-    category = models.ForeignKey(MasterCategory,blank=True, null=True, default=None, on_delete=models.CASCADE)
+    name = models.CharField(u'Мастер',max_length=155, blank=False, null=False, default=None)
+    descriptions = models.CharField(u'Описание',blank=False, null=False, max_length=155, default="")
+    # short_descriptions = models.TextField(u'Стрижки',blank=False, null=False, default=None)
+    position = models.CharField(u'Должность',max_length=155,blank=False, null=False, default="");
+    # category = models.ForeignKey(MasterCategory,blank=True, null=True, default=None, on_delete=models.CASCADE)
     is_active = models.BooleanField(u'Активность',default=True)
-    haircut = models.CharField(u'Стрижка',max_length=155,blank=True, null=True, default=None)
+    # haircut = models.CharField(u'Стрижка',max_length=155,blank=False, null=False, default=None)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     date = models.DateTimeField(u'Дата и время',default=timezone.now)
@@ -56,12 +56,12 @@ class Master(models.Model):
     men = MasterMenManager()
     women = MasterWomenManager()
     # qwe = MasterCategory.id
-    def save(self, * args, ** kwargs):
-        masters_men = Master.objects.filter(is_active=True, category__id=1)
-        masters_women = Master.objects.filter(is_active=True, category__id=2)
-        if masters_women:
-            is_male=False
-        super().save(*args, ** kwargs)
+    # def save(self, * args, ** kwargs):
+    #     masters_men = Master.objects.filter(is_active=True, category__id=1)
+    #     masters_women = Master.objects.filter(is_active=True, category__id=2)
+    #     if masters_women:
+    #         is_male=False
+    #     super().save(*args, ** kwargs)
     #
     # masters_men = objects.filter(is_active=True, category__id=1)
     # masters_women = objects.filter(is_active=True, category__id=2)
